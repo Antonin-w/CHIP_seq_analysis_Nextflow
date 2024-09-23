@@ -1,6 +1,28 @@
-﻿# <a name="rmd-show-all-code"></a><a name="rmd-hide-all-code"></a>UE ADG - TP CHIP-seq - Année 2021-2022
-#### **Antonin Weber**
-#### **31 March, 2022**
+﻿<!-- omit in toc -->
+# Developement de pipeline CHIP-seq avec Nextflow sur cluster de calcul
+<!-- omit in toc -->
+Antonin Weber | 2022 <br /> 
+
+- [Echantillons et séquençage](#echantillons-et-séquençage)
+  - [Les échantillons](#les-échantillons)
+  - [Annotations des échantillons](#annotations-des-échantillons)
+- [Expérience CHiP-seq](#expérience-chip-seq)
+  - [Séquençage](#séquençage)
+- [Pipeline](#pipeline)
+- [Analyses bioinformatiques](#analyses-bioinformatiques)
+  - [Paramètres utilisés lors de l’analyse](#paramètres-utilisés-lors-de-lanalyse)
+  - [Contrôle qualité sur les données brutes](#contrôle-qualité-sur-les-données-brutes)
+  - [Alignement via Bowtie2](#alignement-via-bowtie2)
+  - [Suppression des duplicats de PCR](#suppression-des-duplicats-de-pcr)
+  - [Suppression des chromosomes mitochondriaux](#suppression-des-chromosomes-mitochondriaux)
+  - [Peak calling](#peak-calling)
+  - [Génération des fichiers BED](#génération-des-fichiers-bed)
+  - [Contrôle qualité des fichiers bed](#contrôle-qualité-des-fichiers-bed)
+  - [Annotation des pics](#annotation-des-pics)
+  - [MACS2 Region Count](#macs2-region-count)
+- [Conclusion](#conclusion)
+
+
 
 # Echantillons et séquençage
 
@@ -258,9 +280,7 @@ my_plot
 Tout d'abord, nous pouvons observer que pour tous les échantillons, il y a le même nombre de reads entre les échantillons `R1` et `R2`. Cela montre à première vue qu'il n'y a pas eu d'erreurs flagrante de séquencage. De plus, la longueur des reads est similaire sur l'ensemble des samples. Le pourcentage de GC ne dérive pas vers des valeurs extremes, mais est bien contenu entre 40 et 60 pourcents, assez cohérent pour des échantillons provenant d'Humains. 
 Pour terminer, le pourcentage de duplicats est compris entre 10 et 20%, cela est plutôt standard pour ce type de séquençage, il ne faudra cependant pas oublié de supprimer les duplicats de PCR après l'étape d'alignement. 
 
-## Alignements sur génome de référence avec Bowtie 2 et nettoyage des fichiers bam
-
-### Alignement via Bowtie2
+## Alignement via Bowtie2
 
 Nous allons maintenant déterminer l’emplacement de nos reads sur le génome humain, pour cela nous utiliserons Bowtie2 sur le génome de référence GRCh38 release 90.
 
