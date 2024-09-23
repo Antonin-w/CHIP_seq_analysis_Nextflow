@@ -22,7 +22,10 @@ annot <- read.table("~/Desktop/S2/GN3/Ressources/Annotation_samples_Chipseq.txt"
 kable(annot, caption = "Table 1 : Tableau d'annotation des échantillons")
 ```
 
-<div style="overflow-x:auto; max-height:400px;">
+<details>
+  <summary>
+    Voir le tableau
+  </summary>
 <table><tr><th colspan="7">Table 1 : Tableau d’annotation des échantillons</th></tr>
 <tr><td><b>Samples</b></td><td><b>Samble.renamed</b></td><td><b>Conditions</b></td><td><b>Ctrl_or_TLT</b></td><td><b>Type</b></td><td><b>Marque.histone</b></td><td><b>Cond_name</b></td></tr>
 <tr><td>A1140C01</td><td>C01</td><td>H3K27me3-CTR</td><td>CTR</td><td>ASC28</td><td>Broad</td><td>H3K27me3</td></tr>
@@ -61,8 +64,11 @@ kable(annot, caption = "Table 1 : Tableau d'annotation des échantillons")
 <tr><td>A1140C11</td><td>C11</td><td>H3K4me1-CTR</td><td>CTR</td><td>ASC63</td><td>Narrow</td><td>H3K4me1</td></tr>
 <tr><td>A1140C12</td><td>C12</td><td>H3K4me1-TLT</td><td>TLT</td><td>ASC63</td><td>Narrow</td><td>H3K4me1</td></tr>
 <tr><td>A1141C22</td><td>C22</td><td>INPUT-CTR</td><td>CTR</td><td>ASC63</td><td>Narrow</td><td>INPUT</td></tr>
-</table></div>
+</table>
+</details>
 
+
+<br>
 
 # Expérience CHiP-seq
 ## Séquençage
