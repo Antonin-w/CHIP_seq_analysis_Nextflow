@@ -265,7 +265,7 @@ Nous allons maintenant déterminer l’emplacement de nos reads sur le génome h
 
 Justification des options utilisées pour `Bowtie2`:  
 
-* `sensitive` : optimisation de l’alignement A DETAILLER 
+* `sensitive` : optimisation de l’alignement pré-reglage de Bowtie2 équivalent aux options suivantes : -D 15 -R 2 -N 0 -L 22 -i S,1,1.15
 * `p` : nombre maximum de mismatches autorisés: **20**  
 * `1` : fichier R1 (fastq)
 * `2` : fichier R2 (fastq)  
@@ -364,6 +364,11 @@ annot_Peak <- read.csv("Annot_Peak_Calling.csv")
 kable(annot_Peak)
 ```
 
+<details>
+  <summary>
+    Voir le tableau d'annotation
+  </summary>
+
 |**Name**|**Sample**|**Histone**|**Control**|
 | :- | :- | :- | :- |
 |A1140C01|C01|Broad|C19|
@@ -402,6 +407,9 @@ kable(annot_Peak)
 |A1141C22|C22|Narrow|C22|
 |A1141C23|C23|Narrow|C15|
 |A1141C24|C24|Narrow|C08|
+</details>
+
+<br>
 
 Afin d’automatiser l’étape de Peak Calling, un script bash à été incorporé au process macs2, et permet à partir d’un tableau contenant 4 colonnes : Le nom de l’échantillon, la marque d’histone, le chemin menant à l’échantillon ainsi que le chemin menant à l’échantillon contrôle de réaliser le Peak Calling.
 
@@ -786,7 +794,6 @@ Toutes les informations sur les pics contenues dans peakfile seront conservées 
 </details>
 
 
-
 <details>
   <summary>
     Voir le tableau H3K4me1 Narrow
@@ -841,8 +848,26 @@ Toutes les informations sur les pics contenues dans peakfile seront conservées 
 
 </details>
 
-Feature_H3K3.jpg
-Feature_H3K4.jpg
+H3K27me3 CTR Broad
+Des peaks sont facilement observables, pas de grande différence entre données normalisé ou non
+
+H3K27me3 TLT Broad
+Même observation que pour le CTR, pas de différence entre les deux conditions
+
+H3K27ac CTR Broad
+Peaks facilement observables
+
+H3K27ac TLT Broad
+Pas de Peaks observables, différence avec la condition contrôle
+
+H3K4me1 CTR Broad
+Pas de Peaks observables
+
+H3K4me1 TLT Broad
+Pas de Peaks observables non plus, comme dans la condition contrôle
+
+H3K4me1 TLT Narrow
+Peaks similaire à la condition contrôle de la marque d'histone Narrow
 
 **Distribution des features d’annotation autour du TSS**
 
