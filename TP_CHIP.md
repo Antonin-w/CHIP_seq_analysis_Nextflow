@@ -75,8 +75,9 @@ kable(annot, caption = "Table 1 : Tableau d'annotation des échantillons")
 Les échantillons ont été séquencés sur la plateforme de séquençage de l’Institut Curie à l’aide d’un Illumina HiSeq -Rapid run en paired-end avec une longueur de reads de 100 pb.
 
 # Pipeline
-*pipeline\_netflow\_diagram*
-pipeline_workflow.png
+
+![pipeline_workflow.png](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/pipeline_workflow.png?raw=true)
+
 
 Cette analyse a été faite grâce à `Nextflow`. Le principal avantage de cet outil est sa reproductbilité, extrêmement importante en Science, ainsi que sa paralélistion permettant une optimisation de la rapidité des analyses.
 Toutes les versions de logiciels utilisées pour chacune des étapes de cette analyse sont indiqués dans le fichier `nextflow.config` suivant, cela permet aux autres chercheurs de pouvoir réitérer l'analyse avec exactement les mêmes configurations. Conda à été utililé pour l'installation automatique des logiciels dans l'environnement de travail. 
@@ -252,7 +253,7 @@ my_plot <- my_plot +
 my_plot
 ```
 
-![](Aspose.Words.4dd4bbe9-9463-44b2-8e50-5fef52002936.002.png)
+![qc_quality](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/qc_fastq?raw=true)
 
 Tout d'abord, nous pouvons observer que pour tous les échantillons, il y a le même nombre de reads entre les échantillons `R1` et `R2`. Cela montre à première vue qu'il n'y a pas eu d'erreurs flagrante de séquencage. De plus, la longueur des reads est similaire sur l'ensemble des samples. Le pourcentage de GC ne dérive pas vers des valeurs extremes, mais est bien contenu entre 40 et 60 pourcents, assez cohérent pour des échantillons provenant d'Humains. 
 Pour terminer, le pourcentage de duplicats est compris entre 10 et 20%, cela est plutôt standard pour ce type de séquençage, il ne faudra cependant pas oublié de supprimer les duplicats de PCR après l'étape d'alignement. 
@@ -624,6 +625,39 @@ tagHeatmap(tagMatrixList_H3K4me1_TLT, xlim=c(-8000, 8000), color=NULL)
 dev.off()
 ```
 
+**H3K27me3 CTR Broad**
+Des peaks sont facilement observables, pas de grande différence entre données normalisé ou non
+
+![H3K27me3 CTR Broad](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/HeatMap_H3K27me3_CTR.png?raw=true)
+
+**H3K27me3 TLT Broad**
+Même observation que pour le CTR, pas de différence entre les deux conditions
+
+![H3K27me3 TLT Broad](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/HeatMap_H3K27_TLT.png?raw=true)
+
+**H3K27ac CTR Broad**
+Peaks facilement observables
+
+![H3K27ac CTR Broad](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/HeatMapH3K27ac_CTR.png?raw=true)
+
+**H3K27ac TLT Broad**
+Pas de Peaks observables, différence avec la condition contrôle
+![H3K27ac TLT Broad](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/HeatMap_H3K27ac_TLT.png?raw=true)
+
+**H3K4me1 CTR Broad**
+Pas de Peaks observables
+Pas de Peaks observables, différence avec la condition contrôle
+![H3K4me1 CTR Broad](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/HeatMap_H3K4me1CTR_B.png?raw=true)
+
+**H3K4me1 TLT Broad**
+Pas de Peaks observables non plus, comme dans la condition contrôle
+![H3K4me1 TLT Broad](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/HeatMap_H3K4me1TLT_B.png?raw=true)
+
+**H3K4me1 TLT Narrow**
+Peaks similaire à la condition contrôle de la marque d'histone Narrow
+![H3K4me1 TLT Narrow](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/HeatMap_H3K4me1_Narrow_TLT.png?raw=true)
+
+
 ## Annotation des pics
 
 L’annotation des pics est effectuée à l’aide la fonction annotatePeak. Il est possible de définir la région TSS (site de démarrage de la transcription). Par défaut, TSS est défini entre -8 Ko et + 8 Ko. le fichier de sortie de cette fonction peut être exporté au format txt.
@@ -848,30 +882,22 @@ Toutes les informations sur les pics contenues dans peakfile seront conservées 
 
 </details>
 
-H3K27me3 CTR Broad
-Des peaks sont facilement observables, pas de grande différence entre données normalisé ou non
 
-H3K27me3 TLT Broad
-Même observation que pour le CTR, pas de différence entre les deux conditions
 
-H3K27ac CTR Broad
-Peaks facilement observables
+**Représentation graphique en barplot de l’annotation pour chaque population**
 
-H3K27ac TLT Broad
-Pas de Peaks observables, différence avec la condition contrôle
+Feature_H3K3
 
-H3K4me1 CTR Broad
-Pas de Peaks observables
+![Feature_H3K3](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/Feature_H3K3.jpg?raw=true)
 
-H3K4me1 TLT Broad
-Pas de Peaks observables non plus, comme dans la condition contrôle
 
-H3K4me1 TLT Narrow
-Peaks similaire à la condition contrôle de la marque d'histone Narrow
+Feature_H3K4
+![Feature_H3K4](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/feature_H3K4.jpg?raw=true)
 
 **Distribution des features d’annotation autour du TSS**
 
-merge_from_ofoct-2.jpg
+![merge_from_ofoct-2.jpg](https://github.com/Antonin-w/CHIP_seq_analysis_Nextflow/blob/fd2b3daa3627f3a21c1c455fe1bee3a2acadc2c9/Images/merge_from_ofoct-2.jpg?raw=true)
+
 
 ## MACS2 Region Count
 
